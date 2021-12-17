@@ -20,7 +20,7 @@ def analyze_experiment():
 
     # Only display the parameter summary information after the analysis has concluded.
     input_summary.markdown(input_display)
-        
+
     # Display the summary statistics about the posterior distribution and posterior predictive
     # distribution
     output_col1.metric("Probability of Success in Control Group", value=np.round(exp_output[0], 4))
@@ -42,12 +42,12 @@ def analyze_experiment():
         conclusion_container.markdown(outstring)
 
         # Add an Arnold image to drive home the point.
-        graph_col1.image('images/terminator_okay.gif', use_column_width=True)
+        graph_col1.image('src/images/terminator_okay.gif', use_column_width=True)
     else:
         # We don't know the future of the experiment. Continue
         conclusion_container.markdown("## Experiment should not be terminated.")
         # Add an Arnold image to drive home the point.
-        graph_col1.image('images/thou_shalt_not_terminate.jpeg', use_column_width=True)
+        graph_col1.image('src/images/thou_shalt_not_terminate.jpeg', use_column_width=True)
 
     # Create the histogram showing the posterior distribution of lifts.
     chart_data = pd.DataFrame({'lift': exp_output[5]})
@@ -66,7 +66,7 @@ st.title('Experiment Terminator')
 # Create the container where users can input information about their experiment.
 main_container = st.container()
 
-# Create input boxes in two columns, one for Control and one for Test. For each one, 
+# Create input boxes in two columns, one for Control and one for Test. For each one,
 # make input boxes for planned number of trials, completed trials, and successes.
 col1, col2 = main_container.columns(2)
 col1.header("Control")
