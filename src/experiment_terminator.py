@@ -7,7 +7,7 @@ class ExperimentTerminator():
 
         # The number of samples to be used in Monte Carlo elements of the code. Increasing this number
         # improves accuracy of estimates at the expense of run time.
-        self.mc_samples = 10_000
+        self.mc_samples = 5_000
 
         # The Type I Error rate for the experiment. This determines the credible interval size used
         # for all calculations (e.g., alpha = 0.05 produces 95% credible intervals)
@@ -134,7 +134,8 @@ class ExperimentTerminator():
                 conversion_rate_b,
                 expected_lift,
                 pr_b_gt_a,
-                pr_reject_null]
+                pr_reject_null,
+                posterior_lift]
 
 
 
