@@ -9,6 +9,10 @@ class ExperimentTerminator():
         # improves accuracy of estimates at the expense of run time.
         self.mc_samples = 10_000
 
+        # The Type I Error rate for the experiment. This determines the credible interval size used
+        # for all calculations (e.g., alpha = 0.05 produces 95% credible intervals)
+        self.alpha = 0.05
+
     def get_posterior_samples(self,
                               completed_trials_a,
                               completed_trials_b,
@@ -81,7 +85,7 @@ class ExperimentTerminator():
                                             planned_trials_b - potential_successes_b[i] + 1,
                                             self.mc_samples)
             post_samples_b_minus_a = post_samples_b - post_samples_a
-            interval = np.quantile(post_samples_b_minus_a, [.025, .975])
+            interval = np.quantile(post_samples_b_minus_a, [self.alpha / 2, 1 - (self.alpha / 2)])
             if (interval[0] > 0 or interval[1] < 0):
                 rejection[i] = 1
 
